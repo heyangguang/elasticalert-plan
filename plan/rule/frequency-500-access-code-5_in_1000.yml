@@ -1,0 +1,37 @@
+# es HOST
+es_host: 127.0.0.1
+# es PORT
+es_port: 9200
+# data index
+index: logstash-web-access-log-*
+# rule name
+name: 500 response code result greater than 1000
+# rule
+type: frequency
+num_events: 1000
+
+# time windows
+timeframe:
+  minutes: 5
+
+# es ssl config username password
+verify_certs: False
+es_username: test
+es_password: test
+use_ssl: True
+
+# rule
+max_scrolling_count: 5
+
+# es query
+filter:
+  - query:
+      query_string:
+        query: "access_status:500"
+
+# alert hook
+# different hooks can be configured through command
+alert:
+  - "command"
+
+command: ["/usr/bin/logger", "--server", "192.168.31.100", "--port", "514", "500 response code more than 1000 times in last 5 minute", "-p", "alert"]

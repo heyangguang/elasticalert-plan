@@ -1,0 +1,19 @@
+# ElasticAlert项目使用说明
+
+说明：ElasticAlert进行关于ES的业务监控告警。本项目会有一些demo。
+
+demo不涉及具体任何具体项目配置和实际数据，仅测试。
+
+ElasticAlert工具是开源的，项目地址：https://github.com/Yelp/elastalert，详细参数说明请参考官方项目说明和配置即可。
+
+目前ElasticAlert只是进行一些简单近实时的业务告警，告警延迟不考虑webhook调用和告警系统处理时间+-30S左右。实际告警时间要根据实际配置的时间窗口决定的。
+
+项目初期我们使用的是Docker进行应用的部署，所以我们对ElasticAlert进行了Docker的封装。最早我们使用的v0.1.28版本，因为明文密码会存放主机上，所以我们对这一版本的代码进行了二次开发，支持了密码加密。
+
+项目至今，我们升级了我们应用部署的环境，现在全面采用Kubernetes进行应用的调度和部署。但我们延续了我们自己封装ElasticAlert的Docker的方式,现在我们使用的版本是elastalert-0.2.1。因为我们现在使用Kubernetes进行应用部署，有secret的原因，所以我们不需要在修改源代码。
+
+在plan目录里，我们写了一个http返回码在规定时间窗口超过N次会触发hook进行告警的demo。
+
+我们在start_docker.sh文件中使用了RULE_NAME来指定规则配置，使用LOG_NAME来指定日志文件。这样更方便的配置多个告警。
+
+在这里面还有一个config目录，这个是作为ElasticAlert公共配置使用的，在ElasticAlert首次或运行中需要指定一个ES集群，来生成一些ElasticAlert使用的index。

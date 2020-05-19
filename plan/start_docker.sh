@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker run -d --net host --name SITE500 -v ./config-hz-prod.yaml:/opt/elastalert/config.yaml -v ./logs/:/opt/elastalert/logs/ -v ./rule/:/opt/elastalert/rule/ -e RULE_NAME="frequency-500-access-code-5_in_1000.yml" -e LOG_NAME="frequency-500-access-code-5_in_1000.log" heyangguang123/elasticalert_plan:v0.2.1
