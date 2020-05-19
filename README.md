@@ -4,7 +4,7 @@
 
 demo不涉及具体任何具体项目配置和实际数据，仅测试。
 
-ElasticAlert工具是开源的，项目地址：https://github.com/Yelp/elastalert，
+ElasticAlert工具是开源的，项目地址：https://github.com/Yelp/elastalert
 详细参数说明请参考官方项目说明和配置即可。
 
 目前ElasticAlert只是进行一些简单近实时的业务告警，告警延迟不考虑webhook调用和告警系统处理时间+-30S左右。实际告警时间要根据实际配置的时间窗口决定的。
